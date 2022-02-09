@@ -1,4 +1,10 @@
- <button type="button" value="4" class="btn bg-gradient-info btn-sm detail" data-toggle="modal" data-target="#modal-xl">View</button>
+<div class="container">
+       <div class="row" id="location">
+  
+       </div>
+       </div>
+
+<button type="button" value="4" class="btn bg-gradient-info btn-sm detail" data-toggle="modal" data-target="#modal-xl">View</button>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 
@@ -41,7 +47,6 @@ $(document).ready(function(){
 
     $.each(form_data,function(i,result){
 
-       // location +=  '<tr><td>'+result.label+'</td><td>'+result.value+'</td></tr>';
         location += '<div class="col-6 col-sm-4" style="margin-bottom: 11px;" ><b>'+result.label+'</b> : '+result.value+'</div>';
 
 console.log(location);
