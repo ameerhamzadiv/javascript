@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Drag n Drop</title>
+
+	<link rel="stylesheet" href="main.css" />
+</head>
+
+<style>
+
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body {
+	background-color: #FFCE00;
+	font-family: 'Roboto', Helvetica, sans-serif;
+}
+
+.app {
+	display: flex;
+	flex-flow: column;
+
+	width: 100vw;
+	height: 100vh;
+}
+
+header {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 60px;
+}
+
+.lists {
+	display: flex;
+	flex: 1;
+	width: 100%;
+	overflow-x: scroll;
+}
+
+.lists .list {
+	display: flex;
+	flex-flow: column;
+	flex: 1;
+
+	width: 100%;
+	min-width: 250px;
+	max-width: 350px;
+	height: 100%;
+	min-height: 150px;
+
+	background-color: rgba(0, 0, 0, 0.1);
+	margin: 0 15px;
+	padding: 8px;
+	transition: all 0.2s linear;
+}
+
+.lists .list .list-item {
+	background-color: #F3F3F3;
+	border-radius: 8px;
+	padding: 15px 20px;
+	text-align: center;
+	margin: 4px 0px;
+}
+
+
+</style>
+
+<body>
+	<div class="app">
+		<header>
+			<h1>DRAG n DROP</h1>
+		</header>
+		<div class="lists">
+			<div class="list">
+				<div class="list-item" draggable="true">List item 1</div>
+				<div class="list-item" draggable="true">List item 2</div>
+				<div class="list-item" draggable="true">List item 3</div>
+			</div>
+			<div class="list"></div>
+			<div class="list"></div>
+		</div>
+	</div>
+	<script src="main.js"></script>
+</body>
+
+
+
+
+
+
+<script type="text/javascript">
+
+
+
+const list_items = document.querySelectorAll('.list-item');
+const lists = document.querySelectorAll('.list');
+
+let draggedItem = null;
+
+for (let i = 0; i < list_items.length; i++) {
+	const item = list_items[i];
+
+	item.addEventListener('dragstart', function () {
+		draggedItem = item;
+		setTimeout(function () {
+			item.style.display = 'none';
+		}, 0)
+	});
+
+	item.addEventListener('dragend', function () {
+		setTimeout(function () {
+			draggedItem.style.display = 'block';
+			draggedItem = null;
+		}, 0);
+	})
+
+	for (let j = 0; j < lists.length; j ++) {
+		const list = lists[j];
+
+		list.addEventListener('dragover', function (e) {
+			e.preventDefault();
+		});
+		
+		list.addEventListener('dragenter', function (e) {
+			e.preventDefault();
+			this.style.backgroundColor = 'rgba(0, 0, 0, 0.2)';
+		});
+
+		list.addEventListener('dragleave', function (e) {
+			this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+		});
+
+		list.addEventListener('drop', function (e) {
+			console.log('drop');
+			this.append(draggedItem);
+			this.style.backgroundColor = 'rgba(0, 0, 0, 0.1)';
+		});
+	}
+}
+
+
+
+</script>
+
+
+
+
+
+
+
+
+</html>
