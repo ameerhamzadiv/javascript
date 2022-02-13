@@ -1,0 +1,54 @@
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-suggest@2.1.0/dist/bootstrap-suggest.css">
+
+
+
+<!----- if you enter @ in input field show all users in dropdown ----->
+ <div class="input-group">
+     <input type="text" id="sendchat" name="message"  placeholder="Type Message ..." class="form-control sendchat">
+ </div>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap-suggest@2.1.0/dist/bootstrap-suggest.js" ></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap-suggest@2.1.0/dist/bootstrap-suggest.min.js" ></script>
+		
+		
+    <script type="text/javascript" >
+    
+		  (function($) {
+
+          
+
+            // data
+            var users = [
+                
+                 <?php 
+                //get all users you want to mention
+                foreach(\App\Models\User::where('id','!=',Auth::user()->id)->get() as $key => $staff):  ?>
+                    
+                    <?php $s = $staff->id; $name = $staff->name; ?>
+                    
+                     
+                   
+               {username: '{{$name}}' , userid: {{ $s }} },
+                    
+                <?php endforeach; ?>
+            ];
+
+            $('#sendchat').suggest('@', {
+                
+                data: users,
+                map: function(user) {
+                    return {
+                        value: user.username,
+                        text: '<strong>'+user.username+'</strong id="staff_id">'
+                    }
+                }
+            })
+        }(jQuery || window.jQuery));
+    
+	</script>	
