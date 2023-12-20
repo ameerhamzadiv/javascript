@@ -1,0 +1,30 @@
+<style>
+
+    #loaderbtnor {
+         display: none;
+         position: fixed;
+         top: 0;
+         left: 0;
+         right: 0;
+         bottom: 0;
+         width: 100%;
+         background: #00000040 var(--wpr-bg-1ccbfcc0-3ce0-4cf4-9e31-ef274aacda2b) no-repeat center center;
+         z-index: 10000;
+        background-size: 50px 50px;
+       }
+   
+   
+   </style>
+
+<script>
+
+jQuery(document).ready(function($){
+
+    $(".elementor-element.elementor-element-e3fd231 .bdt-ep-static-carousel-readmore ").on('click', function(){
+			$("#loaderbtnor").show();
+				
+		})
+	
+    });
+
+</script>
